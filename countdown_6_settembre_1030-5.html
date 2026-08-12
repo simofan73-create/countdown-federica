@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown 6 Settembre</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    font-family:Arial,sans-serif; background:linear-gradient(135deg,#f8d9df,#fffaf7,#f6d0da);
+    color:#333; overflow:hidden;
+  }
+  .card{
+    width:min(92vw,700px); padding:42px 28px; text-align:center; border-radius:32px;
+    background:rgba(255,255,255,.82); box-shadow:0 15px 45px rgba(180,90,120,.18);
+    position:relative;
+  }
+  .small{letter-spacing:3px;font-size:15px;text-transform:uppercase}
+  h1{margin:8px 0 2px;color:#d44770;font-family:cursive;font-size:clamp(48px,10vw,82px);font-weight:500}
+  h2{margin:0 0 28px;color:#d44770;font-family:cursive;font-size:clamp(34px,7vw,58px);font-weight:500}
+  .from{font-size:15px;letter-spacing:1px;margin-bottom:22px}
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .unit{background:white;border-radius:18px;padding:18px 6px;box-shadow:0 5px 18px rgba(180,90,120,.12)}
+  .num{font-size:clamp(30px,7vw,54px);font-weight:700;color:#d44770}
+  .label{font-size:12px;letter-spacing:1.5px;margin-top:4px}
+  .msg{margin-top:28px;font-family:cursive;font-size:clamp(22px,5vw,32px);color:#d44770}
+  .heart{position:absolute;color:#e88aa3;font-size:30px}
+  .h1{left:25px;top:25px}.h2{right:28px;top:45px}.h3{left:45px;bottom:35px}.h4{right:45px;bottom:25px}
+  @media(max-width:520px){.count{gap:6px}.unit{padding:14px 3px}.label{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="heart h1">♥</div><div class="heart h2">♡</div>
+  <div class="heart h3">♡</div><div class="heart h4">♥</div>
+  <div class="small">Countdown alla giornata del</div>
+  <h1>6 Settembre</h1>
+  <div class="from">SI PARTE DA OGGI · ORE 10:30</div>
+  <div class="count">
+    <div class="unit"><div class="num" id="days">--</div><div class="label">GIORNI</div></div>
+    <div class="unit"><div class="num" id="hours">--</div><div class="label">ORE</div></div>
+    <div class="unit"><div class="num" id="minutes">--</div><div class="label">MINUTI</div></div>
+    <div class="unit"><div class="num" id="seconds">--</div><div class="label">SECONDI</div></div>
+  </div>
+  <div class="msg">L'attesa sta per finire... 💕</div>
+</div>
+<script>
+function update(){
+  const target = new Date("2026-09-06T10:30:00+02:00").getTime();
+  let diff = target - Date.now();
+  if(diff < 0) diff = 0;
+  const d = Math.floor(diff/86400000); diff%=86400000;
+  const h = Math.floor(diff/3600000); diff%=3600000;
+  const m = Math.floor(diff/60000); diff%=60000;
+  const s = Math.floor(diff/1000);
+  document.getElementById("days").textContent=d;
+  document.getElementById("hours").textContent=String(h).padStart(2,"0");
+  document.getElementById("minutes").textContent=String(m).padStart(2,"0");
+  document.getElementById("seconds").textContent=String(s).padStart(2,"0");
+}
+update(); setInterval(update,1000);
+</script>
+</body>
+</html>
